@@ -76,7 +76,7 @@ $(function() {
         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
-    describe("Inutial Entries", function() {
+    describe('Initial Entries', function() {
 
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -85,29 +85,33 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         beforeEach(function(done) {
-            loadFeed(0, function() {
-                done();
-            })
+            loadFeed(0, done);
         });
-        it("if entry has more then 0 entries", function() {
-            expect($(".entry .feed")).toBeDefined();
-        })
+
+        it('are present', function() {
+            expect($('.feed .entry').length).toBeGreaterThan(0);
+        });
     });
     /* TODO: Write a new test suite named "New Feed Selection" */
-    describe("New Feed Selector", function() {
+    describe('New Feed Selection', function() {
         var oldFeed;
+
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
         beforeEach(function(done) {
             loadFeed(0, function() {
-                oldFeed = $(".feed").html();
+                // store old feed
+                oldFeed = $('.feed').html();
+                // fetch newer feed
                 loadFeed(1, done);
             });
         });
+
         it('is different from old', function() {
-            expect($(".feed").html()).not.toBe(oldFeed);
+            expect($('.feed').html()).not.toBe(oldFeed);
         });
     });
-})
+
+}());
